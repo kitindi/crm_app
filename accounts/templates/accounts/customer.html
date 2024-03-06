@@ -1,5 +1,265 @@
 {% extends 'accounts/main.html' %} {% block content %}
 <main>
-  <div class="max-w-8xl px-4 py-1 sm:px-32 lg:px-32 lg:py-1 mx-auto"></div>
+  <div class="max-w-8xl px-4 py-1 sm:px-32 lg:px-32 lg:py-1 mx-auto">
+    <h2 class="text-sm font-sm flex item-center gap-3 text-slate-600 py-3">
+      Customers
+      <span
+        ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+        </svg>
+      </span>
+      <span class="text-sm">Abdulaziz Sadi</span>
+    </h2>
+    <div class="w-full px-4 mx-auto rounded-sm pb-12 border-b border-gray-200 mb-5">
+      <div class="pt-6 pb-16 flex justify-between">
+        <div>
+          <h2 class="text-gray-900 text-2xl font-semibold mb-2">Abdulaziz Sadi</h2>
+          <p class="text-sm text-slate-500 font-medium">abdulaziz@gmail.com</p>
+          <p class="text-sm text-slate-500 font-medium">+255 767654229</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="" class="py-1 px-10 border border-red-600 rounded-md text-sm text-red-700 font-semibold hover:bg-red-600 hover:text-white"
+            >Delete customer</a
+          >
+          <a href="" class="py-1 px-10 border border-gray-600 rounded-md text-sm text-slate-700 font-semibold hover:bg-gray-800 hover:text-white"
+            >Update information</a
+          >
+        </div>
+      </div>
+      <div>
+        <!-- Card -->
+        <div class="max-w-sm flex flex-col bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-800">
+          <div class="p-4 md:p-5 flex gap-x-4">
+            <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-gray-100 rounded-lg dark:bg-gray-800">
+              <svg
+                class="flex-shrink-0 size-5 text-gray-600 dark:text-gray-400"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 22h14" />
+                <path d="M5 2h14" />
+                <path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22" />
+                <path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2" />
+              </svg>
+            </div>
+
+            <div class="grow">
+              <div class="flex items-center gap-x-2">
+                <p class="text-xs uppercase tracking-wide text-gray-500 font-medium">Total Orders</p>
+              </div>
+              <div class="mt-1 flex items-center gap-x-2">
+                <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">29</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Card -->
+      </div>
+    </div>
+    <!-- Table Section -->
+    <div class="w-full px-4 py-2 mx-auto">
+      <!-- Card -->
+      <div class="flex flex-col">
+        <div class="-m-1.5 overflow-x-auto">
+          <div class="p-1.5 min-w-full inline-block align-middle">
+            <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden dark:bg-slate-900 dark:border-gray-700">
+              <!-- Header -->
+              <div class="px-6 py-4 grid grid-cols-12 gap-3 md:gird md:gap-3 md:items-center border-b border-gray-200 dark:border-gray-700">
+                <!-- Input -->
+                <div class="sm:col-span-4">
+                  <label for="hs-as-table-product-review-search" class="sr-only">Search Product</label>
+                  <div class="relative">
+                    <input
+                      type="text"
+                      id="hs-as-table-product-review-search"
+                      name="hs-as-table-product-review-search"
+                      class="py-2 px-3 ps-11 block w-full border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                      placeholder="Search Product"
+                    />
+                    <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4">
+                      <svg class="size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path
+                          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <!-- End Input -->
+
+                <div class="col-span-4">
+                  <div class="inline-flex gap-x-2">
+                    <a
+                      class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-800 text-white hover:bg-gray-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                      href="#"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                        />
+                      </svg>
+
+                      Search
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!-- End Header -->
+
+              <!-- Table -->
+              <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead class="bg-gray-50 divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+                  <tr>
+                    <th scope="col" class="px-6 py-3 text-start border-s border-gray-200 dark:border-gray-700">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> PRODUCT NAME </span>
+                    </th>
+
+                    <th scope="col" class="px-6 py-3 text-start">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> PRODUCT CATEGORY </span>
+                    </th>
+
+                    <th scope="col" class="px-6 py-3 text-start">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> DATE ORDERED </span>
+                    </th>
+
+                    <th scope="col" class="px-6 py-3 text-start">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> STATUS </span>
+                    </th>
+
+                    <th scope="col" class="px-6 py-3 text-start">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> UPDATE </span>
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-start">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> ACTION </span>
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                  <tr>
+                    <td class="h-px w-auto whitespace-nowrap">
+                      <div class="px-6 py-2 flex items-center gap-x-3">
+                        <p class="flex items-center gap-x-2">
+                          <span class="font-semibold text-sm text-gray-800 dark:text-gray-200">Samsung Galaxy Watch 5 Pro</span>
+                        </p>
+                      </div>
+                    </td>
+                    <td class="h-px w-auto whitespace-nowrap">
+                      <div class="px-6 py-2">
+                        <span class="font-semibold text-sm text-gray-800 dark:text-gray-200">Wearable Technology</span>
+                      </div>
+                    </td>
+                    <td class="h-px w-auto whitespace-nowrap">
+                      <div class="px-6 py-2">
+                        <span class="text-sm text-gray-800 dark:text-gray-200">172</span>
+                      </div>
+                    </td>
+                    <td class="h-px w-auto whitespace-nowrap">
+                      <div class="px-6 py-2">
+                        <span class="text-sm text-gray-800 dark:text-gray-200">$150.00</span>
+                      </div>
+                    </td>
+                    <td class="h-px w-auto whitespace-nowrap">
+                      <div class="px-6 py-2">
+                        <span class="text-sm text-gray-800 dark:text-gray-200">$ 200.00</span>
+                      </div>
+                    </td>
+                    <td class="h-px w-auto whitespace-nowrap">
+                      <div class="px-6 py-2 flex items-center gap-3">
+                        <a href="#" class="text-sm text-gray-800 dark:text-gray-200"
+                          ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                            />
+                          </svg>
+                        </a>
+                        <a href="#" class="text-sm text-gray-800 dark:text-gray-200"
+                          ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m6 4.125 2.25 2.25m0 0 2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"
+                            />
+                          </svg>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- End Table -->
+
+              <!-- Footer -->
+              <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200 dark:border-gray-700">
+                <div>
+                  <p class="text-sm text-gray-600 dark:text-gray-400"><span class="font-semibold text-gray-800 dark:text-gray-200">9</span> results</p>
+                </div>
+
+                <div>
+                  <div class="inline-flex gap-x-2">
+                    <button
+                      type="button"
+                      class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                    >
+                      <svg
+                        class="flex-shrink-0 size-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="m15 18-6-6 6-6" />
+                      </svg>
+                      Prev
+                    </button>
+
+                    <button
+                      type="button"
+                      class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                    >
+                      Next
+                      <svg
+                        class="flex-shrink-0 size-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="m9 18 6-6-6-6" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- End Footer -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Card -->
+    </div>
+    <!-- End Table Section -->
+  </div>
 </main>
 {% endblock content %}
