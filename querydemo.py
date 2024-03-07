@@ -65,3 +65,14 @@ class ChildModel(models.Model):
 parent = ParentModel.objects.first()
 #Returns all child models related to parent
 parent.childmodel_set.all()
+
+
+# 
+
+# Replace this…
+# {% if p !='...' %}
+
+# For this:
+# {% if p != '...' %}
+
+# Tell me if it works!

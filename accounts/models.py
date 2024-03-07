@@ -6,6 +6,7 @@ class Customer(models.Model):
     firstname = models.CharField(max_length=100,  null=True)
     lastname = models.CharField(max_length=100,  null=True)
     phone_number = models.CharField(max_length=100,  null=True)
+    location = models.CharField(max_length=300, null=True)
     email = models.EmailField(max_length=100,  null=True)
     date_created = models.DateTimeField(auto_now_add=True ,null=True)
     
@@ -31,7 +32,7 @@ class Product(models.Model):
     tag = models.ManyToManyField(Tag)
     
     def __str__(self):
-        return f"{self.product_name} -- {self.product_category}"
+        return f"{self.product_name}"
         
     
 
@@ -40,13 +41,13 @@ class Order(models.Model):
     
     STATUS =(('Pending', 'Pending'),('Out of delivery', 'Out of delivery'),('Delivered', 'Delivered'))
     customer = models.ForeignKey(Customer,null=True, on_delete=models.SET_NULL)
-    product= models.ForeignKey(Product,null=True, on_delete=models.SET_NULL) 
+    product= models.ForeignKey(Product,null=True, on_delete=models.SET_NULL)
+    date_ordered= models.DateField(null=True)
+    date_delivered= models.DateField(null=True,blank=True)
     date_created = models.DateTimeField(auto_now_add=True ,null=True)
     status = models.CharField(max_length=200,null=True, choices =STATUS)
     
     def __str__(self):
         return f"{self.status}"
   
-    
-
     

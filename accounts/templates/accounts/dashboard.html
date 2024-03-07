@@ -30,13 +30,13 @@
 
           <div class="grow">
             <div class="flex items-center gap-x-2">
-              <p class="text-xs uppercase tracking-wide text-gray-500">Total Customers</p>
+              <p class="text-xs font-medium uppercase tracking-wide text-gray-500">Total Customers</p>
               <div class="hs-tooltip">
                 <div class="hs-tooltip-toggle"></div>
               </div>
             </div>
             <div class="mt-1 flex items-center gap-x-2">
-              <h3 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-gray-200">72,540</h3>
+              <h3 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-gray-200">{{ customersCount }}</h3>
             </div>
           </div>
         </div>
@@ -68,10 +68,19 @@
 
           <div class="grow">
             <div class="flex items-center gap-x-2">
-              <p class="text-xs uppercase tracking-wide text-gray-500">Total Orders</p>
+              <p class="text-xs font-medium uppercase tracking-wide text-gray-500">Total Orders</p>
             </div>
-            <div class="mt-1 flex items-center gap-x-2">
-              <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">300</h3>
+            <div class="mt-1 flex items-center gap-x-5">
+              <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">{{ orderCount }}</h3>
+              <div>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" viewBox="0 0 256 256">
+                    <path
+                      d="M240,56v64a8,8,0,0,1-16,0V75.31l-82.34,82.35a8,8,0,0,1-11.32,0L96,123.31,29.66,189.66a8,8,0,0,1-11.32-11.32l72-72a8,8,0,0,1,11.32,0L136,140.69,212.69,64H168a8,8,0,0,1,0-16h64A8,8,0,0,1,240,56Z"
+                    ></path>
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -93,10 +102,10 @@
 
           <div class="grow">
             <div class="flex items-center gap-x-2">
-              <p class="text-xs uppercase tracking-wide text-gray-500">Orders Delivered</p>
+              <p class="text-xs font-medium uppercase tracking-wide text-gray-500">Orders Delivered</p>
             </div>
             <div class="mt-1 flex items-center gap-x-2">
-              <h3 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-gray-200">230</h3>
+              <h3 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-gray-200">{{ deliveredCount }}</h3>
             </div>
           </div>
         </div>
@@ -118,13 +127,13 @@
 
           <div class="grow">
             <div class="flex items-center gap-x-2">
-              <p class="text-xs uppercase tracking-wide text-gray-500">Pending Orders</p>
+              <p class="text-xs font-medium uppercase tracking-wide text-gray-500">Pending Orders</p>
               <div class="hs-tooltip">
                 <div class="hs-tooltip-toggle"></div>
               </div>
             </div>
             <div class="mt-1 flex items-center gap-x-2">
-              <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">50</h3>
+              <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">{{ pendingCount }}</h3>
             </div>
           </div>
         </div>
@@ -139,10 +148,10 @@
   <div class="max-w-8xl px-4 sm:px-32 py-6 mx-auto">
     <div class="flex flex-col sm:grid sm:grid-cols-12 gap-3">
       <div class="col-span-5">
-        <h2>Customers</h2>
+        <h2 class="text-xl font-semibold text-slate-700">Customers List</h2>
         {% comment %} {% endcomment %}
         <!-- Table Section -->
-        <div class="max-w-[85rem] py-10 mx-auto">
+        <div class="max-w-[85rem] py-5 mx-auto">
           <!-- Card -->
           <div class="flex flex-col">
             <div class="-m-1.5 overflow-x-auto">
@@ -198,19 +207,22 @@
                     </thead>
 
                     <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                      {% for customer in customers %}
                       <tr class="px-6">
                         <td class="size-px whitespace-nowrap px-6">
                           <div class="px-6 lg:px-3 xl:px-0 px-6 py-3">
                             <div class="flex items-center gap-x-3">
                               <div class="grow">
-                                <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200">David Harrison</span>
+                                <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200"
+                                  >{{ customer.firstname }} {{ customer.lastname }}</span
+                                >
                               </div>
                             </div>
                           </div>
                         </td>
                         <td class="h-px w-72 whitespace-nowrap">
                           <div class="px-6 py-3">
-                            <span class="block text-sm text-gray-500">Kimara</span>
+                            <span class="block text-sm text-gray-500">{{ customer.location }}</span>
                           </div>
                         </td>
 
@@ -225,6 +237,7 @@
                           </div>
                         </td>
                       </tr>
+                      {% endfor %}
                     </tbody>
                   </table>
                   <!-- End Table -->
@@ -232,7 +245,9 @@
                   <!-- Footer -->
                   <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200 dark:border-gray-700">
                     <div>
-                      <p class="text-sm text-gray-600 dark:text-gray-400"><span class="font-semibold text-gray-800 dark:text-gray-200">6</span> results</p>
+                      <p class="text-sm text-gray-600 dark:text-gray-400">
+                        <span class="font-semibold text-gray-800 dark:text-gray-200">{{ customers | length }}</span> results
+                      </p>
                     </div>
 
                     <div>
@@ -291,10 +306,10 @@
         <!-- End Table Section -->
       </div>
       <div class="col-span-7 lg:pl-20">
-        Order Table
+        <h2 class="text-xl font-semibold text-slate-700">Orders List</h2>
 
         <!-- Table Section -->
-        <div class="max-w-[85rem] py-10 mx-auto">
+        <div class="max-w-[85rem] py-5 mx-auto">
           <!-- Card -->
           <div class="flex flex-col">
             <div class="-m-1.5 overflow-x-auto">
@@ -322,12 +337,12 @@
                   <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 px-6 py-4">
                     <thead class="bg-gray-50 dark:bg-slate-800">
                       <tr class="">
-                        <th scope="col" class="px-3 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
+                        <th scope="col" class="px-3 lg:ps-3 xl:ps-0 py-3 text-start">
                           <div class="flex items-center gap-x-2 px-3">
-                            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">Product</span>
+                            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">Product Name</span>
                           </div>
                         </th>
-                        <th scope="col" class="px-3 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
+                        <th scope="col" class="px-3 lg:ps-3 xl:ps-0 py-3 text-start">
                           <div class="flex items-center gap-x-2 px-3">
                             <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">Date Ordered</span>
                           </div>
@@ -338,56 +353,68 @@
                             <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> Status</span>
                           </div>
                         </th>
-                        <th scope="col" class="px-3 py-3 text-start">
-                          <div class="flex items-center gap-x-2">
-                            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> Update</span>
-                          </div>
-                        </th>
 
                         <th scope="col" class="px-3 py-3 text-start">
                           <div class="flex items-center gap-x-2">
-                            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> Remove </span>
+                            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> Action </span>
                           </div>
                         </th>
-
-                        <th scope="col" class="px-6 py-3 text-end"></th>
                       </tr>
                     </thead>
 
                     <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                      <tr class="px-6">
-                        <td class="size-px whitespace-nowrap">
+                      {% for order in orders %}
+                      <tr class="">
+                        <td scope="col" class="whitespace-nowrap">
                           <div class="px-3 py-3">
-                            <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200">David Harrison</span>
+                            <span class="block text-sm text-gray-800 dark:text-gray-200">{{ order.product.product_name }}</span>
                           </div>
                         </td>
-                        <td class="h-px w-72 whitespace-nowrap">
+                        <td scope="col" class="whitespace-nowrap">
                           <div class="px-3 py-3">
-                            <span class="block text-sm text-gray-500">Branding </span>
+                            <span class="block text-sm text-gray-500"> {{ order.date_ordered }}</span>
                           </div>
                         </td>
-                        <td class="h-px w-72 whitespace-nowrap">
+                        <td class="whitespace-nowrap">
                           <div class="px-3 py-3">
-                            <span class="block text-sm text-gray-500">Branding </span>
-                          </div>
-                        </td>
-                        <td class="h-px w-72 whitespace-nowrap">
-                          <div class="px-3 py-3">
-                            <span class="block text-sm text-gray-500">Branding </span>
+                            <span
+                              class="{% if order.status == 'Pending' %} block text-sm text-red-500 font-medium {% elif order.status == 'Out of delivery' %} block text-sm text-amber-500 font-medium {% else %} block text-sm text-green-500 font-medium {% endif %}"
+                              >{{ order.status }}
+                            </span>
                           </div>
                         </td>
 
-                        <td class="size-px whitespace-nowrap">
-                          <div class="px-3 py-1.5">
-                            <a
-                              class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                              href="#"
-                            >
-                              Edit
+                        <td scope="col" class="whitespace-nowrap">
+                          <div class="px-6 py-2 flex items-center gap-3">
+                            <a href="#" class="text-sm text-gray-800 dark:text-gray-200"
+                              ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                                />
+                              </svg>
+                            </a>
+                            <a href="#" class="text-sm text-gray-800 dark:text-gray-200"
+                              ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="w-4 h-4 text-red-500"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m6 4.125 2.25 2.25m0 0 2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"
+                                />
+                              </svg>
                             </a>
                           </div>
                         </td>
                       </tr>
+                      {% endfor %}
                     </tbody>
                   </table>
                   <!-- End Table -->
@@ -395,7 +422,9 @@
                   <!-- Footer -->
                   <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200 dark:border-gray-700">
                     <div>
-                      <p class="text-sm text-gray-600 dark:text-gray-400"><span class="font-semibold text-gray-800 dark:text-gray-200">6</span> results</p>
+                      <p class="text-sm text-gray-600 dark:text-gray-400">
+                        <span class="font-semibold text-gray-800 dark:text-gray-200">{{ orders | length }}</span> results
+                      </p>
                     </div>
 
                     <div>
