@@ -1,0 +1,94 @@
+{% extends 'accounts/main.html' %} {% block content %}
+<main>
+  <div class="max-w-8xl px-4 py-1 sm:px-32 lg:px-32 lg:py-1 mx-auto">
+    <h2 class="text-sm font-sm flex item-center gap-2 text-slate-600 py-3">
+      <a href="{% url 'home' %}">Dashboard</a>
+      <span
+        ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+        </svg>
+      </span>
+      Add Customer
+    </h2>
+  </div>
+
+  <div class="max-w-4xl px-4 py-1 lg:py-1 mx-auto border border-gray-300 rounded-lg">
+    
+    <div
+      class="w-full bg-white rounded-lg  xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+    >
+      <div class="w-full sm:p-8">
+        <h1
+          class="text-xl font-bold  text-gray-900 md:text-2xl  text-center"
+        >
+          Sign in to your account
+        </h1>
+        <form class="w-full " action="#" method="POST">
+          {% csrf_token %}
+         <div class="w-full flex justify-between gap-5 py-3 mb-3">
+            <div class="flex-1">
+                <label
+                  for="firstname"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >{{ form.firstname.label_tag }}</label
+                >
+                {{ form.firstname }}
+              </div> 
+              <div class="flex-1">
+                <label
+                  for="lastname"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >{{ form.lastname.label_tag }}</label
+                >
+                {{ form.lastname }}
+              </div>
+         </div>
+         <div class="w-full flex justify-between gap-5 py-3 mb-3">
+            <div class="flex-1">
+                <label
+                  for="email"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >{{ form.email.label_tag }}</label
+                >
+                {{ form.email }}
+              </div> 
+              <div class="flex-1">
+                <label
+                  for="phone_number"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >{{ form.phone_number.label_tag }}</label
+                >
+                {{ form.phone_number }}
+              </div>
+         </div>
+          <div class="py-3 mb-3">
+            <label
+              for="email"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >{{ form.location.label_tag }}</label
+            >
+            {{ form.location }}
+          </div>
+         
+
+          
+          <button
+          type="submit"
+          class="w-full py-2 px-3 flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-800 text-white hover:bg-gray-700"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
+            />
+          </svg>
+
+          Add Customer
+        </button>
+         
+        </form>
+      </div>
+   
+</main>
+{% endblock content%}

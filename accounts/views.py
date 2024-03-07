@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
+from .forms import *
 
 # Create your views here.
 
@@ -42,3 +43,11 @@ def customer(request, pk):
     
     context = {'customer':customer,'orderCount':orderCount,'orders':orders}
     return render(request, 'accounts/customer.html', context)
+
+# create new customer
+
+def add_customer(request):
+    form = CustomerForm()
+    context = {'form': form}
+    
+    return render(request, 'accounts/customer_form.html', context)
