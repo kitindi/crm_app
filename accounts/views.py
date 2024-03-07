@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import *
 from .forms import *
 
@@ -50,4 +50,41 @@ def add_customer(request):
     form = CustomerForm()
     context = {'form': form}
     
+    if request.method == 'POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            
+            return redirect('home')
+    
     return render(request, 'accounts/customer_form.html', context)
+
+
+
+# update customer customer data
+
+def update_customer(request,pk):
+    
+    customer = Customer.objects.get(id=pk)
+    form = CustomerForm(instance=customer)
+    context = {'form': form}
+    
+    if request.method == 'POST':
+        form = CustomerForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            
+            return redirect('home')
+    
+    return render(request, 'accounts/customer_form.html', context)
+
+
+# delete customer
+
+def delete_customer(request,pk):
+    
+    customer = Customer.objects.get(id=pk)
+    customer.delete()
+    
+    return redirect('home')
+    
