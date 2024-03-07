@@ -1,21 +1,27 @@
 {% extends 'accounts/main.html' %} {% block content %}
 <main>
   <div class="max-w-8xl px-4 py-1 sm:px-32 lg:px-32 lg:py-1 mx-auto">
-    <h2 class="text-sm font-sm flex item-center gap-3 text-slate-600 py-3">
-      Customers
+    <h2 class="text-sm font-sm flex item-center gap-2 text-slate-600 py-3">
+      <a href="{% url 'home' %}">Dashboard</a>
       <span
         ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
           <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
         </svg>
       </span>
-      <span class="text-sm">Abdulaziz Sadi</span>
+      Customer
+      <span
+        ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+        </svg>
+      </span>
+      <span class="text-sm">{{ customer.firstname }} {{ customer.lastname }}</span>
     </h2>
     <div class="w-full px-4 mx-auto rounded-lg pb-12 border border-gray-200 mb-5">
       <div class="pt-6 pb-16 flex justify-between">
         <div>
-          <h2 class="text-gray-900 text-2xl font-semibold mb-2">Abdulaziz Sadi</h2>
-          <p class="text-sm text-slate-500 font-medium">abdulaziz@gmail.com</p>
-          <p class="text-sm text-slate-500 font-medium">+255 767654229</p>
+          <h2 class="text-gray-900 text-2xl font-semibold mb-2">{{ customer.firstname }} {{ customer.lastname }}</h2>
+          <p class="text-sm text-slate-500 font-medium">{{ customer.email}}</p>
+          <p class="text-sm text-slate-500 font-medium">{{ customer.phone_number }}</p>
         </div>
         <div class="flex items-center gap-2">
           <a href="" class="py-1 px-10 border border-red-600 rounded-md text-sm text-red-700 font-semibold hover:bg-red-600 hover:text-white"
@@ -55,7 +61,7 @@
                 <p class="text-xs uppercase tracking-wide text-gray-500 font-medium">Total Orders</p>
               </div>
               <div class="mt-1 flex items-center gap-x-2">
-                <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">29</h3>
+                <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">{{ orderCount }}</h3>
               </div>
             </div>
           </div>
@@ -135,9 +141,7 @@
                       <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> STATUS </span>
                     </th>
 
-                    <th scope="col" class="px-6 py-3 text-start">
-                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> UPDATE </span>
-                    </th>
+                   
                     <th scope="col" class="px-6 py-3 text-start">
                       <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> ACTION </span>
                     </th>
@@ -145,33 +149,31 @@
                 </thead>
 
                 <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                  {% for order in orders %}
                   <tr>
                     <td class="h-px w-auto whitespace-nowrap">
                       <div class="px-6 py-2 flex items-center gap-x-3">
                         <p class="flex items-center gap-x-2">
-                          <span class="font-semibold text-sm text-gray-800 dark:text-gray-200">Samsung Galaxy Watch 5 Pro</span>
+                          <span class="font-semibold text-sm text-gray-800 dark:text-gray-200">{{ order.product.product_name }}</span>
                         </p>
                       </div>
                     </td>
                     <td class="h-px w-auto whitespace-nowrap">
                       <div class="px-6 py-2">
-                        <span class="font-semibold text-sm text-gray-800 dark:text-gray-200">Wearable Technology</span>
+                        <span class="font-semibold text-sm text-gray-800 dark:text-gray-200">{{ order.product.product_category }}</span>
                       </div>
                     </td>
                     <td class="h-px w-auto whitespace-nowrap">
                       <div class="px-6 py-2">
-                        <span class="text-sm text-gray-800 dark:text-gray-200">172</span>
+                        <span class="text-sm text-gray-800 dark:text-gray-200">{{ order.date_ordered }}</span>
                       </div>
                     </td>
                     <td class="h-px w-auto whitespace-nowrap">
                       <div class="px-6 py-2">
-                        <span class="text-sm text-gray-800 dark:text-gray-200">$150.00</span>
+                        <span  class="{% if order.status == 'Pending' %} block text-sm text-red-500 font-medium {% elif order.status == 'Out of delivery' %} block text-sm text-amber-500 font-medium {% else %} block text-sm text-green-500 font-medium {% endif %}">{{ order.status }}</span>
                       </div>
                     </td>
-                    <td class="h-px w-auto whitespace-nowrap">
-                      <div class="px-6 py-2">
-                        <span class="text-sm text-gray-800 dark:text-gray-200">$ 200.00</span>
-                      </div>
+                   
                     </td>
                     <td class="h-px w-auto whitespace-nowrap">
                       <div class="px-6 py-2 flex items-center gap-3">
@@ -196,6 +198,7 @@
                       </div>
                     </td>
                   </tr>
+                  {% endfor %}
                 </tbody>
               </table>
               <!-- End Table -->
@@ -203,7 +206,7 @@
               <!-- Footer -->
               <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200 dark:border-gray-700">
                 <div>
-                  <p class="text-sm text-gray-600 dark:text-gray-400"><span class="font-semibold text-gray-800 dark:text-gray-200">9</span> results</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-400"><span class="font-semibold text-gray-800 dark:text-gray-200">{{ orders | length }}</span> results</p>
                 </div>
 
                 <div>
