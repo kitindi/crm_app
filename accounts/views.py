@@ -76,7 +76,7 @@ def update_customer(request,pk):
             
             return redirect('home')
     
-    return render(request, 'accounts/customer_form.html', context)
+    return render(request, 'accounts/update_customer.html', context)
 
 
 # delete customer
@@ -87,4 +87,50 @@ def delete_customer(request,pk):
     customer.delete()
     
     return redirect('home')
+    
+# handling customer orders
+
+# Creating customer order
+
+
+def create_order(request):
+    form = OrderForm()
+    context = {'form': form}
+    
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    return render(request, 'accounts/order_form.html', context)
+
+# Update order information
+
+
+def update_order(request, pk):
+    # get the order instance
+    order = Order.objects.get(id=pk)
+    form = OrderForm(instance=order)
+    context = {'form': form}
+    
+    if request.method == 'POST':
+        form = OrderForm(request.POST, instance=order)
+        if form.is_valid():
+            form.save()
+            
+            return redirect('home')
+    
+    return render(request, 'accounts/update_order.html', context)
+
+# delete order information
+
+def delete_order(request,pk):
+    
+    order = Order.objects.get(id=pk)
+    order.delete()
+    
+    return redirect('home')
+    
+    
     

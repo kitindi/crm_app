@@ -1,0 +1,94 @@
+{% extends 'accounts/main.html' %} {% block content %}
+<main>
+  <div class="max-w-8xl px-4 py-1 sm:px-32 lg:px-32 lg:py-1 mx-auto mb-8">
+    <h2 class="text-sm font-sm flex item-center gap-2 text-slate-600 py-3">
+      <a href="{% url 'home' %}">Dashboard</a>
+      <span
+        ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+        </svg>
+      </span>
+      Create Order
+    </h2>
+  </div>
+
+  <div class="max-w-2xl px-4 py-1 lg:py-1 mx-auto border border-gray-200 rounded-xl">
+    
+    <div
+      class="w-full bg-white rounded-lg  xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+    >
+      <div class="w-full sm:p-8">
+        <h1
+          class="text-xl font-bold  text-gray-700 md:text-2xl mb-16"
+        >
+          Customer Order Form
+        </h1>
+        <form class="w-full " action="#" method="POST">
+          {% csrf_token %}
+         <div class="w-full flex justify-between gap-5 py-3 mb-3">
+            <div class="flex-1">
+                <label
+                  for="firstname"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >{{ form.customer.label_tag }}</label
+                >
+                {{ form.customer }}
+              </div> 
+              <div class="flex-1">
+                <label
+                  for="lastname"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >{{ form.product.label_tag }}</label
+                >
+                {{ form.product }}
+              </div>
+         </div>
+         <div class="w-full flex justify-between gap-5 py-3 mb-3">
+            <div class="flex-1">
+                <label
+                  for="email"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >{{ form.date_ordered.label_tag }}</label
+                >
+                {{ form.date_ordered }}
+              </div> 
+              <div class="flex-1">
+                <label
+                  for="phone_number"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >{{ form.date_delivered.label_tag }}</label
+                >
+                {{ form.date_delivered }}
+              </div>
+         </div>
+         <div class="w-full flex justify-between gap-5 py-3 mb-3">
+            <div class="flex-1 py-3 mb-3">
+                <label
+                  for="email"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >{{ form.status.label_tag }}</label
+                >
+                {{ form.status }}
+              </div>
+            <div class="flex-1">
+                
+              </div>
+         </div>
+                 
+          <button
+          type="submit"
+          class="max-w-72 py-3 px-12 flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-800 text-white hover:bg-gray-700"
+        >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+          </svg>
+          
+
+         Update Order
+        </button>
+         
+        </form>
+      </div>
+   
+</main>
+{% endblock content%}
