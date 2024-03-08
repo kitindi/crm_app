@@ -40,8 +40,16 @@ def customer(request, pk):
     # get all customer orders
     orders = customer.order_set.all()
     orderCount = orders.count()
+    subTotal = 0
     
-    context = {'customer':customer,'orderCount':orderCount,'orders':orders}
+    if orders.count() > 0:
+        for order in orders:
+            subTotal += order.quantity * order.product.price
+    else:
+        subTotal = 0
+  
+    
+    context = {'customer':customer,'orderCount':orderCount,'orders':orders,'subTotal':subTotal}
     return render(request, 'accounts/customer.html', context)
 
 # create new customer
@@ -133,4 +141,5 @@ def delete_order(request,pk):
     return redirect('home')
     
     
-    
+# Handling products logic
+

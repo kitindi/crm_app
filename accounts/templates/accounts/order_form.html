@@ -61,18 +61,24 @@
                 {{ form.date_delivered }}
               </div>
          </div>
-         <div class="w-full flex justify-between gap-5 py-3 mb-3">
+         <div class="w-full flex justify-between  gap-5 py-3 mb-3">
+          <div class="flex-1 py-3 mb-3">
+            <label
+            for="quantity"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >{{ form.quantity.label_tag }}</label
+          >
+          {{ form.quantity }}
+          </div>
             <div class="flex-1 py-3 mb-3">
                 <label
-                  for="email"
+                  for="status"
                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >{{ form.status.label_tag }}</label
                 >
                 {{ form.status }}
               </div>
-            <div class="flex-1">
-                
-              </div>
+          
          </div>
                  
           <button

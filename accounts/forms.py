@@ -1,6 +1,6 @@
 from django import forms
 from .models import *
-from django.forms.widgets import TextInput,EmailInput,DateInput,Select
+from django.forms.widgets import TextInput,EmailInput,DateInput,Select,NumberInput
 
 
 
@@ -24,7 +24,7 @@ class OrderForm(forms.ModelForm):
     
     class Meta:
         model = Order
-        fields = ['customer','product','date_ordered','date_delivered','status']
+        fields = ['customer','product','date_ordered','date_delivered','status','quantity']
         
         widgets = {
             'customer':Select(attrs={'class': 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}),
@@ -32,7 +32,10 @@ class OrderForm(forms.ModelForm):
             'date_ordered':DateInput(attrs={'class': 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500','type':'date'}),
             'date_delivered':DateInput(attrs={'class': 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500','type':'date'}),
             'status':Select(attrs={'class': 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}),
+            'quantity':NumberInput(attrs={'class': 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}),
                        
             }
       
        
+
+        

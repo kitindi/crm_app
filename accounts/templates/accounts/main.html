@@ -6,6 +6,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    {% include "accounts/navbar.html" %} {% block content %} {% endblock content %}
+    {% load mathfilters %} {% include "accounts/navbar.html" %} {% block content %} {% endblock content %}
   </body>
 </html>

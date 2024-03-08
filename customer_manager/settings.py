@@ -29,7 +29,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     
     # added apps
-    "accounts"
+    "accounts",
+    "mathfilters"
 ]
 
 MIDDLEWARE = [
