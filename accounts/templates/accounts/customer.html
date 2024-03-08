@@ -33,9 +33,16 @@
             <p class="text-sm text-slate-500 ">{{ customer.email}}</p>
             <p class="text-sm text-slate-500 ">{{ customer.phone_number }}</p>
             <p class="text-sm text-slate-500  ">{{ customer.location }}</p>
+            <div class="py-2">
+            <a href="{% url 'edit-customer' customer.id %}" class="text-slate-800 font-flex items-center gap-3"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+            </svg>
+            </span> Edit</a>
+            </div>
           </div>
 
         </div>
+        
 
         <div class="p-4 h-fit mt-8">
           <h2 class="text-lg font-medium text-slate-600 mb-4">Customer Statistics</h2>
@@ -52,10 +59,10 @@
 
           <div class="grow">
             <div class="flex items-center gap-x-2">
-              <p class="text-xs font-medium uppercase tracking-wide text-gray-500">Orders Delivered</p>
+              <p class="text-xs font-medium uppercase tracking-wide text-gray-500">Total Orders</p>
             </div>
             <div class="mt-1 flex items-center gap-x-2">
-              <h3 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-gray-200">3</h3>
+              <h3 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-gray-200">{{ orderCount }}</h3>
             </div>
           </div>
         </div>
@@ -79,7 +86,7 @@
               <p class="text-xs font-medium uppercase tracking-wide text-gray-500">Orders Delivered</p>
             </div>
             <div class="mt-1 flex items-center gap-x-2">
-              <h3 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-gray-200">3</h3>
+              <h3 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-gray-200">{{ deliveredCount }}</h3>
             </div>
           </div>
         </div>
@@ -90,7 +97,7 @@
           <div class="w-full py-8">
             <a
             class="w-full p-3 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-800 text-white hover:bg-gray-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="{% url 'create-order' %}"
+            href="{% url 'create-order' customer.id %}"
           >
             <svg class="flex-shrink-0 size-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M2.63452 7.50001L13.6345 7.5M8.13452 13V2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -212,7 +219,7 @@
                 <!-- End Footer -->
               </div>
               <div class="pt-8 px-2">
-                <button>Process invoice</button>
+                <button class="bg-gray-800 text-white hover:bg-gray-700 py-3 px-20">Process invoice</button>
               </div>
             </div>
           </div>

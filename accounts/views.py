@@ -39,6 +39,7 @@ def customer(request, pk):
     
     # get all customer orders
     orders = customer.order_set.all()
+    deliveredCount = customer.order_set.filter(status = 'Delivered').count()
     orderCount = orders.count()
     subTotal = 0
     
@@ -49,7 +50,7 @@ def customer(request, pk):
         subTotal = 0
   
     
-    context = {'customer':customer,'orderCount':orderCount,'orders':orders,'subTotal':subTotal}
+    context = {'customer':customer,'orderCount':orderCount,'deliveredCount':deliveredCount,'subTotal':subTotal,'orders':orders,'deliveredCount':deliveredCount}
     return render(request, 'accounts/customer.html', context)
 
 # create new customer
@@ -101,8 +102,9 @@ def delete_customer(request,pk):
 # Creating customer order
 
 
-def create_order(request):
-    form = OrderForm()
+def create_order(request, pk):
+    customer = Customer.objects.get(id=pk)
+    form = OrderForm(initial={'customer': customer})
     context = {'form': form}
     
     if request.method == 'POST':
