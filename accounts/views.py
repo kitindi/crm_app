@@ -23,7 +23,19 @@ def home(request):
     
     return render(request, 'accounts/dashboard.html',context)
 
+# Products APIs
 
+
+# create a new product
+
+def create_product(request):
+    form = ProductForm()
+    context = {'form': form}
+    return render(request, 'accounts/product_form.html', context)
+
+
+
+# fetch all products
 def products(request):
     
     products = Product.objects.all()
