@@ -32,7 +32,7 @@
         </h1>
         <h2 class="text-lg font-normal text-slate-400 mb-2">PRIMARY DETAILS</h2>
         </div>
-        <form class="w-full " action="#" method="POST">
+        <form class="w-full " method="POST">
           {% csrf_token %}
          <div class="w-full flex justify-between gap-5 py-3 mb-3">
             <div class="flex-1">
@@ -55,9 +55,9 @@
                 <label
                   for="lastname"
                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >{{ form.tag.label_tag }}</label
+                  >{{ form.brand.label_tag }}</label
                 >
-                {{ form.tag }}
+                {{ form.brand }}
               </div>
          </div>
          <div class="w-full flex justify-between gap-5 py-3 mb-3">

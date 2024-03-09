@@ -14,10 +14,7 @@ class Customer(models.Model):
         return f"{self.firstname} {self.lastname}"
     
     
-class Tag(models.Model):
-    name = models.CharField(max_length=100)
-    def __str__(self):
-        return f"{self.name}"
+
 
 
 class Product(models.Model):
@@ -29,7 +26,7 @@ class Product(models.Model):
     cost = models.DecimalField(max_digits=9,decimal_places=2, null=True)
     price = models.DecimalField(max_digits=9, decimal_places=2,null=True)
     date_created = models.DateTimeField(auto_now_add=True ,null=True)
-    tag = models.ManyToManyField(Tag)
+    brand = models.CharField(max_length=200,null=True)
     
     def __str__(self):
         return f"{self.product_name}"
