@@ -1,0 +1,163 @@
+{% extends 'accounts/main.html' %} {% block content %}
+<main>
+  <div class="max-w-8xl px-4 py-1 sm:px-32 lg:px-32 lg:py-1 mx-auto">
+    <h2 class="text-sm font-sm flex item-center gap-2 text-slate-600 py-3">
+      <a href="{% url 'home' %}">Dashboard</a>
+      <span
+        ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+        </svg>
+      </span>
+      <a href="{% url 'products' %}"> Products</a>
+      <span
+        ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+        </svg>
+      </span>
+      Product Details
+     
+    </h2>
+  </div>
+
+
+  <div class="max-w-8xl px-4 sm:px-32 lg:px-32 mx-auto my-16">
+  <div class="w-full sm:grid sm:grid-cols-12 gap-5 rounded-lg  h-fit">
+    <div class="col-span-3 border-r border-gray-200 pr-8 ">
+      <h2 class="text-xl font-medium text-slate-600 mb-5">Sales Summary</h2>
+          <!-- Card -->
+        <div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-800">
+        <div class="p-3 md:p-3 flex gap-x-4">
+          <div class="flex-shrink-0 flex justify-center items-center size-[64px] bg-gray-100 rounded-lg dark:bg-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
+            </svg>
+            
+          </div>
+
+          <div class="grow">
+            <div class="flex items-center gap-x-2">
+              <p class="text-lg font-regular  tracking-wide text-gray-500">Active Sales</p>
+            </div>
+            <div class=" flex items-center gap-x-5">
+              <h3 class="text-xl font-medium text-gray-600 dark:text-gray-200 py-2">1000</h3>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-800 my-5">
+        <div class="p-3 md:p-3 flex gap-x-4">
+          <div class="flex-shrink-0 flex justify-center items-center size-[64px] bg-gray-100 rounded-lg dark:bg-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" viewBox="0 0 256 256"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,160H40V56H216V200ZM176,88a48,48,0,0,1-96,0,8,8,0,0,1,16,0,32,32,0,0,0,64,0,8,8,0,0,1,16,0Z"></path></svg>
+            
+          </div>
+
+          <div class="grow">
+            <div class="flex items-center gap-x-2">
+              <p class="text-lg font-regular  tracking-wide text-gray-500">Total Paid Orders</p>
+            </div>
+            <div class=" flex items-center gap-x-5">
+              <h3 class="text-xl font-medium text-gray-600 dark:text-gray-200 py-2">10000</h3>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Card -->
+       <!-- Card -->
+       <div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-800">
+        <div class="p-3 md:p-3 flex gap-x-4">
+          <div class="flex-shrink-0 flex justify-center items-center size-[64px] bg-gray-100 rounded-lg dark:bg-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+            </svg>
+          </div>
+
+          <div class="grow">
+            <div class="flex items-center gap-x-2">
+              <p class="text-lg font-regular  tracking-wide text-gray-500">Total Users</p>
+            </div>
+            <div class="mt-1 flex items-center gap-x-5">
+              <h3 class="text-xl font-medium text-gray-600 dark:text-gray-200 py-2">100</h3>
+           
+            </div>
+          </div>
+        </div>
+      </div>
+     </div>
+     <div class="col-span-9 px-20"> <h2 class="text-xl font-medium text-slate-600 mb-5">Product Details</h2>
+     
+       {% comment %}  {% endcomment %}
+      <div class="py-2 border-b border-gray-200">
+        <h3 class="text-[18px] text-slate-400 font-regular">PRIMARY DETAILS</h3>
+        
+        <div class="flex items-center gap-8 py-2">
+        <div class="flex-1 pr-10">
+        <p class="flex justify-between items-center py-1"><span class="text-slate-700 font-regular text-sm">Prouct Category</span> <span class="text-sm font-medium text-slate-500">{{ product.product_category }}</span></p>
+        <p class="flex justify-between items-center py-1"><span class="text-slate-700 font-regular text-sm"">Prouct Name</span> <span class="text-sm font-medium text-slate-500">{{  product.product_name }}</span></p>
+        </div>
+      <div class="flex-1 pl-32"><p class="flex justify-between items-center py-1"><span class="text-slate-700 font-regular text-sm">Manufacture</span class="text-sm font-medium text-slate-500"> <span class="text-sm font-medium text-slate-500">{{ product.brand }}</span></p>
+        <p class="flex justify-between items-center py-1"><span class="text-slate-700 font-regular text-sm">Unit</span> <span class="text-sm font-medium text-slate-500">PCs</span></p></div>
+     </div>
+     
+      </div>
+     {% comment %}  {% endcomment %}
+     {% comment %}  {% endcomment %}
+     <div class="py-2 border-b border-gray-200">
+      <h3 class="text-[18px] text-slate-400 font-regular">PURCHASE INFORMATION</h3>
+      
+      <div class="flex items-center gap-8 py-2">
+      <div class="flex-1 pr-10">
+      <p class="flex justify-between items-center  py-1"><span class="text-slate-700 font-regular text-sm">Cost Price</span> <span class="text-sm font-medium text-slate-500">${{ product.cost }}</span></p>
+      
+      </div>
+    <div class="flex-1 pl-32">
+      <p class="flex justify-between items-center py-1"><span class="text-slate-700 font-regular text-sm">Selling Price</span> <span class="text-sm font-medium text-slate-500">${{ product.price }}</span></p>
+     </div>
+   </div>
+   
+    </div>
+   {% comment %}  {% endcomment %}
+     {% comment %}  {% endcomment %}
+     <div class="py-2 border-b border-gray-200">
+      <h3 class="text-[18px] text-slate-400 font-regular">ACCOUNTING STOCK</h3>
+      
+      <div class="flex items-center gap-8 py-2">
+      <div class="flex-1">
+      <p class="flex justify-between items-center pr-60 py-1"><span class="text-slate-700 font-regular text-sm">Stock in Hand</span> <span class="text-sm font-medium text-slate-500">{{ product.instock }}</span></p>
+      
+      </div>
+    <div class="flex-1">
+      
+   </div>
+   
+    </div>
+   {% comment %}  {% endcomment %}
+   
+    </div>
+    <div class="my-2 py-5 flex items-center gap-10">
+      <div>  <a
+        class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-sm border border-transparent bg-gray-800 text-white hover:bg-gray-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+        href="{% url 'create-product' %}"
+      >
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffffff" viewBox="0 0 256 256"><path d="M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM51.31,160,136,75.31,152.69,92,68,176.68ZM48,179.31,76.69,208H48Zm48,25.38L79.31,188,164,103.31,180.69,120Zm96-96L147.31,64l24-24L216,84.68Z"></path></svg>
+        Edit Product
+      </a></div>
+      <div>  <a
+        class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-sm border border-transparent bg-red-600 text-white hover:bg-red-800 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+        href="{% url 'create-product' %}"
+      >
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ffffff" viewBox="0 0 256 256"><path d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"></path></svg>
+        Delete Product
+      </a></div>
+    
+     </div>
+   </div>
+  </div>
+ 
+  </main
+
+      
+  {% endblock content %}
+    

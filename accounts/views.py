@@ -36,9 +36,8 @@ def create_product(request):
         form = ProductForm(request.POST)
         if form.is_valid():
             form.save()
-            print(form.cleaned_data)
-        else:
-            print(form.errors)
+            return redirect('products')
+      
         
     return render(request, 'accounts/product_form.html', context)
 
@@ -50,6 +49,31 @@ def products(request):
     products = Product.objects.all()
     context = {'products': products}
     return render(request, 'accounts/products.html', context)
+
+# view product details
+
+def product_details(request, pk):
+    product = Product.objects.get(id=pk)
+    
+    context = {'product': product}
+    
+    return render(request, 'accounts/product_details.html', context)
+
+
+
+# delete a product
+
+def delete_product(request,pk):
+    # get the instance of the product to delete
+    
+    product = Product.objects.get(id=pk)
+    product.delete()
+    
+    return redirect('products')
+    
+    
+    
+    
 
 
 
