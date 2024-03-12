@@ -1,7 +1,7 @@
 {% extends 'accounts/main.html' %} {% load mathfilters %}{% block content %}
-<main>
+<main class="">
   <div class="max-w-8xl  px-4 py-1 sm:px-32 lg:px-32 lg:py-1 mx-auto">
-    <h2 class="text-sm font-sm flex item-center gap-2 text-slate-600 pt-10">
+    <h2 class="text-sm font-sm flex item-center gap-2 text-slate-600 pt-5">
       <a href="{% url 'home' %}">Dashboard</a>
       <span
         ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -183,12 +183,12 @@
                       </td>
                       <td class="h-px w-auto whitespace-nowrap">
                         <div class="px-6 py-2">
-                          <span class="text-sm text-gray-800 dark:text-gray-200">{{ order.product.price }} TSH</span>
+                          <span class="text-sm text-gray-800 dark:text-gray-200">${{ order.product.price }}</span>
                         </div>
                       </td>
                       <td class="h-px w-auto whitespace-nowrap">
                         <div class="px-6 py-2 text-center">
-                          <span class="text-sm text-gray-800 dark:text-gray-200"> {{order.quantity|mul:order.product.price}} TSH
+                          <span class="text-sm text-gray-800 dark:text-gray-200"> ${{order.quantity|mul:order.product.price}}
                           </span>
                         </div>
                       </td>
@@ -209,8 +209,8 @@
   
                   <div>
                     <div class=" px-8">
-                      <div class="flex items-center gap-10 py-3 border-b border-gray-300"><span class="text-sm font-semibold">Subtotal</span> <span class="text-sm font-semibold">{{ subTotal }} TSH</span></div>
-                      <div class="flex items-center gap-5 py-2"><span class="text-sm font-semibold">Amount Due</span> <span class="text-sm font-semibold text-right">{{ subTotal }} TSH</span></div>
+                      <div class="flex items-center gap-10 py-3 border-b border-gray-300"><span class="text-sm font-semibold">Subtotal</span> <span class="text-sm font-semibold">${{ subTotal }}</span></div>
+                      <div class="flex items-center gap-5 py-2"><span class="text-sm font-semibold">Amount Due</span> <span class="text-sm font-semibold text-right">${{ subTotal }}</span></div>
                       
                     </div>
                   </div>

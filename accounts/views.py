@@ -54,10 +54,42 @@ def products(request):
 
 def product_details(request, pk):
     product = Product.objects.get(id=pk)
+    # get number of products orders
     
-    context = {'product': product}
+    orders = product.order_set.all()
+    orderCount = orders.count()
+    paidOrder = product.order_set.filter(status = 'Delivered').count()
+    
+    # calculate total amount of sales for paid orders
+    
+    totalSales = 0
+    
+    for order in orders:
+        if order.status == 'Delivered':
+            totalSales += (order.quantity * order.product.price)
+    
+    context = {'product': product,'orderCount': orderCount,'paidOrder': paidOrder,'totalSales': totalSales}
+   
     
     return render(request, 'accounts/product_details.html', context)
+
+# edit product
+
+def edit_product(request,pk):
+    
+    product = Product.objects.get(id=pk)
+    form = ProductForm(instance=product)
+    context = {'form': form}
+    
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            
+            return redirect('products')
+    
+    return render(request, 'accounts/edit_product.html', context)
+
 
 
 
