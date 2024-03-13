@@ -2,10 +2,11 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .models import *
 from .forms import *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-
+@login_required
 def home(request):
     # get customers statistics and details
     products = Product.objects.all()
@@ -27,7 +28,7 @@ def home(request):
 
 
 # create a new product
-
+@login_required
 def create_product(request):
     form = ProductForm()
     context = {'form': form}
@@ -44,6 +45,7 @@ def create_product(request):
 
 
 # fetch all products
+@login_required
 def products(request):
     
     products = Product.objects.all()
@@ -51,7 +53,7 @@ def products(request):
     return render(request, 'accounts/products.html', context)
 
 # view product details
-
+@login_required
 def product_details(request, pk):
     product = Product.objects.get(id=pk)
     # get number of products orders
@@ -74,7 +76,7 @@ def product_details(request, pk):
     return render(request, 'accounts/product_details.html', context)
 
 # edit product
-
+@login_required
 def edit_product(request,pk):
     
     product = Product.objects.get(id=pk)
@@ -94,7 +96,7 @@ def edit_product(request,pk):
 
 
 # delete a product
-
+@login_required
 def delete_product(request,pk):
     # get the instance of the product to delete
     
@@ -109,7 +111,7 @@ def delete_product(request,pk):
 
 
 
-
+@login_required
 def customer(request, pk):
     # get a customer details
     customer = Customer.objects.get(id=pk)
@@ -131,7 +133,7 @@ def customer(request, pk):
     return render(request, 'accounts/customer.html', context)
 
 # create new customer
-
+@login_required
 def add_customer(request):
     form = CustomerForm()
     context = {'form': form}
@@ -148,7 +150,7 @@ def add_customer(request):
 
 
 # update customer customer data
-
+@login_required
 def update_customer(request,pk):
     
     customer = Customer.objects.get(id=pk)
@@ -166,7 +168,7 @@ def update_customer(request,pk):
 
 
 # delete customer
-
+@login_required
 def delete_customer(request,pk):
     
     customer = Customer.objects.get(id=pk)
@@ -178,7 +180,7 @@ def delete_customer(request,pk):
 
 # Creating customer order
 
-
+@login_required
 def create_order(request, pk):
     customer = Customer.objects.get(id=pk)
     form = OrderForm(initial={'customer': customer})
@@ -193,8 +195,7 @@ def create_order(request, pk):
     return render(request, 'accounts/order_form.html', context)
 
 # Update order information
-
-
+@login_required
 def update_order(request, pk):
     # get the order instance
     order = Order.objects.get(id=pk)
@@ -211,7 +212,7 @@ def update_order(request, pk):
     return render(request, 'accounts/update_order.html', context)
 
 # delete order information
-
+@login_required
 def delete_order(request,pk):
     
     order = Order.objects.get(id=pk)
