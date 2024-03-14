@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Customer(models.Model):
@@ -9,7 +9,7 @@ class Customer(models.Model):
     location = models.CharField(max_length=300, null=True)
     email = models.EmailField(max_length=100,  null=True)
     date_created = models.DateTimeField(auto_now_add=True ,null=True)
-    
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     def __str__(self):
         return f"{self.firstname} {self.lastname}"
     
@@ -27,6 +27,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=9, decimal_places=2,null=True)
     date_created = models.DateTimeField(auto_now_add=True ,null=True)
     brand = models.CharField(max_length=200,null=True)
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     
     def __str__(self):
         return f"{self.product_name}"
@@ -44,6 +45,7 @@ class Order(models.Model):
     date_delivered= models.DateField(null=True,blank=True)
     date_created = models.DateTimeField(auto_now_add=True ,null=True)
     status = models.CharField(max_length=200,null=True, choices =STATUS)
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     
     def __str__(self):
         return f"{self.status}"

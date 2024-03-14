@@ -8,7 +8,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
         </svg>
       </span>
-      Products
+      Customers
     </h2>
   </div>
   <!-- Features -->
@@ -16,7 +16,7 @@
   <div class="max-w-8xl px-4 py-5 sm:px-32 lg:px-32 lg:py-5 mx-auto">
     <!-- Grid -->
     <div class="mb-4">
-      <h2 class="text-[18px] font-medium text-slate-700 uppercase">PRODUCTS Sales Activity</h2>
+      <h2 class="text-[18px] font-medium text-slate-700 uppercase">CUSTOMERS Sales Activity</h2>
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
       <!-- Card -->
@@ -32,7 +32,7 @@
 
           <div class="grow">
             <div class="flex items-center gap-x-2">
-              <p class="text-xs font-medium uppercase tracking-wide text-gray-500">Total Products instock</p>
+              <p class="text-xs font-medium uppercase tracking-wide text-gray-500">Total Sales</p>
               <div class="hs-tooltip">
                 <div class="hs-tooltip-toggle"></div>
               </div>
@@ -57,7 +57,7 @@
 
           <div class="grow">
             <div class="flex items-center gap-x-2">
-              <p class="text-xs font-medium uppercase tracking-wide text-gray-500">Products below reorder level</p>
+              <p class="text-xs font-medium uppercase tracking-wide text-gray-500">Products Delivered</p>
               <div class="hs-tooltip">
                 <div class="hs-tooltip-toggle"></div>
               </div>
@@ -83,7 +83,7 @@
 
           <div class="grow">
             <div class="flex items-center gap-x-2">
-              <p class="text-xs font-medium uppercase tracking-wide text-gray-500">Total Orders to be shipped</p>
+              <p class="text-xs font-medium uppercase tracking-wide text-gray-500">Total Customers</p>
             </div>
             <div class="mt-1 flex items-center gap-x-5">
               <h3 class="text-2xl font-medium text-gray-800 dark:text-gray-200">88</h3>
@@ -108,7 +108,7 @@
 
           <div class="grow">
             <div class="flex items-center gap-x-2">
-              <p class="text-xs font-medium uppercase tracking-wide text-gray-500">Orders Delivered</p>
+              <p class="text-xs font-medium uppercase tracking-wide text-gray-500">Pending Orders</p>
             </div>
             <div class="mt-1 flex items-center gap-x-2">
               <h3 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-gray-200">99</h3>
@@ -123,7 +123,7 @@
   <!-- End Card Section -->
   <div class="max-w-8xl px-4 py-1 sm:px-32 lg:px-32 lg:py-1 mx-auto">
     <div class="w-full py-5 mx-auto">
-      <h2 class="text-2xl font-normal gap-3 text-slate-600">Showing <span class="font-semibold">All Products</span></h2>
+      <h2 class="text-2xl font-normal gap-3 text-slate-600">Showing <span class="font-semibold">All Customers</span></h2>
     </div>
     <!-- Table Section -->
     <div class="w-full px-4 py-2 mx-auto">
@@ -155,24 +155,17 @@
                   <div class="inline-flex gap-x-2">
                     <a
                       class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-sm border border-transparent bg-gray-800 text-white hover:bg-gray-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                      href="{% url 'create-product' %}"
+                      href="{% url 'add-customer' %}"
                     >
-                      <svg
-                        class="flex-shrink-0 size-4"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="25"
-                        height="25"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path d="M5 12h14" />
-                        <path d="M12 5v14" />
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
+                        />
                       </svg>
-                      Add Product
+
+                      Add Customer
                     </a>
                   </div>
                 </div>
@@ -184,26 +177,26 @@
                 <thead class="bg-gray-50 divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                   <tr>
                     <th scope="col" class="px-6 py-3 text-start border-s border-gray-200 dark:border-gray-700">
-                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> PRODUCT NAME </span>
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> firstname </span>
                     </th>
 
                     <th scope="col" class="px-6 py-3 text-start">
-                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> PRODUCT CATEGORY </span>
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> lastname </span>
                     </th>
                     <th scope="col" class="px-6 py-3 text-start">
-                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> PRODUCT BRAND </span>
-                    </th>
-
-                    <th scope="col" class="px-6 py-3 text-start">
-                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> INSTOCK </span>
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> location </span>
                     </th>
 
                     <th scope="col" class="px-6 py-3 text-start">
-                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> COST </span>
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> email </span>
                     </th>
 
                     <th scope="col" class="px-6 py-3 text-start">
-                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> PRICE </span>
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> phone number</span>
+                    </th>
+
+                    <th scope="col" class="px-6 py-3 text-start">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200"> orders </span>
                     </th>
 
                     <th scope="col" class="px-6 py-3 text-start">
@@ -213,43 +206,43 @@
                 </thead>
 
                 <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                  {% for product in products %}
+                  {% for customer in customers %}
                   <tr>
                     <td class="h-px w-auto whitespace-nowrap">
                       <div class="px-6 py-2 flex items-center gap-x-3">
                         <p class="flex items-center gap-x-2">
-                          <span class="text-sm text-gray-800 dark:text-gray-200">{{ product.product_name }}</span>
+                          <span class="text-sm text-gray-800 dark:text-gray-200">{{ customer.firstname }}</span>
                         </p>
                       </div>
                     </td>
                     <td class="h-px w-auto whitespace-nowrap">
                       <div class="px-6 py-2">
-                        <span class="text-sm text-gray-800 dark:text-gray-200">{{ product.product_category }}</span>
+                        <span class="text-sm text-gray-800 dark:text-gray-200">{{ customer.lastname }}</span>
                       </div>
                     </td>
                     <td class="h-px w-auto whitespace-nowrap">
                       <div class="px-6 py-2">
-                        <span class="text-sm text-gray-800 dark:text-gray-200">{{ product.brand }}</span>
+                        <span class="text-sm text-gray-800 dark:text-gray-200">{{ customer.location }}</span>
                       </div>
                     </td>
                     <td class="h-px w-auto whitespace-nowrap">
                       <div class="px-6 py-2">
-                        <span class="text-sm text-gray-800 dark:text-gray-200">{{ product.instock }}</span>
+                        <span class="text-sm text-gray-800 dark:text-gray-200">{{ customer.email }}</span>
                       </div>
                     </td>
                     <td class="h-px w-auto whitespace-nowrap">
                       <div class="px-6 py-2">
-                        <span class="text-sm text-gray-800 dark:text-gray-200">${{ product.cost }}</span>
+                        <span class="text-sm text-gray-800 dark:text-gray-200">{{ customer.phone_number }}</span>
                       </div>
                     </td>
                     <td class="h-px w-auto whitespace-nowrap">
                       <div class="px-6 py-2">
-                        <span class="text-sm text-gray-800 dark:text-gray-200">${{ product.price }}</span>
+                        <span class="text-sm text-gray-800 dark:text-gray-200">4</span>
                       </div>
                     </td>
                     <td class="h-px w-auto whitespace-nowrap">
                       <div class="py-2 flex items-center gap-3">
-                        <a href="{% url 'product-details' product.id %}" class="px-3 py-1.5 flex gap-2 items-center text-gray-500">
+                        <a href="{% url 'customer' customer.id %}" class="px-3 py-1.5 flex gap-2 items-center text-gray-500">
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path
                               stroke-linecap="round"
