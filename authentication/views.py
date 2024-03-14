@@ -7,9 +7,11 @@ from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .decorators import unauthenticated_user
 
 
 # Create your views here.
+@unauthenticated_user
 def signup(request):
     
     if request.method == 'GET':
@@ -28,13 +30,13 @@ def signup(request):
             return  redirect('login')
         
         else:
-            messages.warning(request, "The passowords must match and of 8 or more mixed characters.")
+            messages.warning(request, "The passowords must match and of 8 or more mixed characters without including your username.")
             return render(request,'auth/signup.html',{'form':form})
     
    
 # login user
 
-
+@unauthenticated_user
 def login(request):
 
     form = LoginForm()
