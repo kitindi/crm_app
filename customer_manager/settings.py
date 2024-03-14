@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     # added apps
     "accounts",
     "authentication",
+    'django_filters',
     "mathfilters"
 ]
 

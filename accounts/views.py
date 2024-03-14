@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .models import *
 from .forms import *
+from .filters import ProductFilter
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -47,8 +48,8 @@ def create_product(request):
 # fetch all products
 @login_required
 def products(request):
-    
     products = Product.objects.all()
+       
     context = {'products': products}
     return render(request, 'accounts/products.html', context)
 

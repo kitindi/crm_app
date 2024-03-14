@@ -6,6 +6,7 @@ from .forms import LoginForm,SignupForm
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 # Create your views here.
@@ -27,8 +28,8 @@ def signup(request):
             return  redirect('login')
         
         else:
-            
-             return render(request,'auth/signup.html',{'form':form})
+            messages.warning(request, "The passowords must match and of 8 or more mixed characters.")
+            return render(request,'auth/signup.html',{'form':form})
     
    
 # login user
@@ -55,6 +56,11 @@ def login(request):
                 auth.login(request, user)
 
                 return redirect('home')
+        else:
+            messages.warning(request, "Username or password is incorrect")
+            context = {'form':form}
+            return render(request, 'auth/login.html', context=context)
+                
 
 
     context = {'form':form}
