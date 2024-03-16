@@ -1,6 +1,7 @@
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -115,9 +116,21 @@ STATIC_URL = "static/"
 
 MEDIA_URL = "/images/"
 STATICFILES_DIRS=[os.path.join(BASE_DIR, "static")]
+MEDIA_ROOT = os.path.join(BASE_DIR, "static/images")
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_URL = 'login'
+
+# setting up SMTP configurations
+# Load environment variables from .env file
+load_dotenv()
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMALI_HOST = 'smtp.gmail.com'
+EMAIL_PORT ='587'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv('USER_EMAIL')
+EMAIL_HOST_PASSWORD = os.getenv('USER_PASS')
