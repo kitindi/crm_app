@@ -42,15 +42,23 @@
             <a href="{% url 'home' %}" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</a>
             <a href="{% url "products" %}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Products</a>
             <a href="{% url 'all-customers' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Customers</a>
-            <a href="" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Orders</a>
+            <a href="{% url 'orders' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Orders</a>
           </div>
         </div>
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 {% if user.is_authenticated %}
-<p class="text-slate-300 text-[16px] font-medium capitalize mr-6">Hi, {{ user.username }} !</p>
+<p class="text-slate-300 text-[16px] font-medium capitalize mr-2">Hi, {{ user.username }} !</p>
 {% endif %}
+<div class="w-[200] py-2 flex items-center mx-3 relative" x-data="{ open: false }">
   
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#F4EBEB" viewBox="0 0 256 256" @click="open = ! open"
+  class="cursor-pointer"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM74.08,197.5a64,64,0,0,1,107.84,0,87.83,87.83,0,0,1-107.84,0ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120Zm97.76,66.41a79.66,79.66,0,0,0-36.06-28.75,48,48,0,1,0-59.4,0,79.66,79.66,0,0,0-36.06,28.75,88,88,0,1,1,131.52,0Z"></path></svg>
+  <span class="W-full flex flex-col gap-3 absolute left-0 top-10 px-2 bg-gray-100 rounded-lg" x-show="open" @click.outside="open = false">
+    <a href="" class="w-full block text-[12px] font-medium">Edit Profile</a>
+    <a href="#" class="w-full block text-[12px] font-medium text-red-400">Delete Order</a>
+  </span>
+</div>
         <button
           type="button"
           class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -91,7 +99,7 @@
 
       <a href="/products/" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Products</a>
       <a href="{% url 'all-customers' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Customers</a>
-      <a href="" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Orders</a>
+      <a href="{% url 'orders' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Orders</a>
     </div>
   </div>
 </nav>

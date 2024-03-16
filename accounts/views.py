@@ -55,8 +55,36 @@ def create_product(request):
 def products(request):
     # user_products = request.user.product
     products = Product.objects.filter(user=request.user)
+    orders = Order.objects.filter(user=request.user)
+    
+    # calculate total number of products available in stock
+    
+    totalStock = 0
+    reorderCount = 0
+    ordersToshipCount = 0
+    ordersDelivered = 0
+    
+    
+    for product in products:
+        totalStock += product.instock
+        
+        if product.instock <= product.reorder_level:
+            reorderCount += 1
+    
+    for order in orders:
+        
+        if order.status == 'Delivered':
+            ordersDelivered += 1
+            
+    for order in orders:
+        
+        if order.status == 'Pending' or order.status == 'Out of delivery':
+            ordersToshipCount += 1
+            
+    
+            
        
-    context = {'products': products}
+    context = {'products': products, 'totalStock': totalStock, 'reorderCount': reorderCount,'ordersToshipCount': ordersToshipCount,'ordersDelivered': ordersDelivered}
     return render(request, 'accounts/products.html', context)
 
 # view product details
@@ -116,18 +144,13 @@ def delete_product(request,pk):
     return redirect('products')
     
     
-    
-    
-
-
-
 @login_required
 def customer(request, pk):
     # get a customer details
     customer = Customer.objects.get(id=pk,user=request.user)
     
     # get all customer orders
-    orders = customer.order_set.filter(user=request.user)
+    orders = customer.order_set.all()
     deliveredCount = customer.order_set.filter(status = 'Delivered').count()
     orderCount = orders.count()
     subTotal = 0
@@ -145,9 +168,28 @@ def customer(request, pk):
 # get all customers
 @login_required
 def all_customers(request):
-    customers = Customer.objects.filter(user=request.user)
     
-    return render(request, 'accounts/customers.html',{'customers': customers})   
+    customers = Customer.objects.filter(user=request.user)
+    orders = Order.objects.filter(user=request.user)
+    deliveredOrders= Order.objects.filter(status = 'Delivered', user=request.user)
+    deliveredCount= deliveredOrders.count()
+    pendingOrders= Order.objects.filter(status = 'Pending', user=request.user).count()
+  
+    # total custumers served
+    customerCount = customers.count()
+    # Ccalculate the total sales for all customers
+    
+    totalSales = 0
+    for order in orders:
+        if order.status =='Delivered':
+            totalSales += order.quantity * order.product.price
+    
+    
+    # 
+    context = {'customers': customers, 'customersCount': customerCount,'deliveredCount': deliveredCount,'pendingOrders': pendingOrders,'totalSales': totalSales}
+    return render(request, 'accounts/customers.html', context)   
+
+
 # create new customer
 @login_required
 def add_customer(request):
@@ -161,10 +203,9 @@ def add_customer(request):
             customer.user = request.user
             customer.save()
             
-            return redirect('home')
+            return redirect('all-customers')
     
     return render(request, 'accounts/customer_form.html', context)
-
 
 
 # update customer customer data
@@ -182,7 +223,7 @@ def update_customer(request,pk):
             customer.user = request.user
             customer.save()
             
-            return redirect('home')
+            return redirect('all-customers')
     
     return render(request, 'accounts/update_customer.html', context)
 
@@ -194,11 +235,35 @@ def delete_customer(request,pk):
     customer = Customer.objects.get(id=pk, user=request.user)
     customer.delete()
     
-    return redirect('home')
+    return redirect('all-customers')
     
 # handling customer orders
 
-# Creating customer order
+
+# Fetch all orders
+@login_required
+def orders(request):
+    orders = Order.objects.filter(user=request.user)
+    ordersDelivered = 0
+    ordersPending = 0
+    
+    
+    for order in orders:
+        
+        if order.status == 'Delivered':
+            ordersDelivered += 1
+            
+    for order in orders:
+        
+        if order.status == 'Pending':
+            ordersPending += 1
+            
+   
+            
+    
+    context = {'orders': orders, 'ordersDelivered':ordersDelivered, 'ordersPending': ordersPending}
+    
+    return render(request, 'accounts/all_orders.html', context)
 
 @login_required
 def create_order(request, pk):
@@ -207,7 +272,7 @@ def create_order(request, pk):
     context = {'form': form}
     
     if request.method == 'POST':
-        form = OrderForm(request.POST, user=request.user)
+        form = OrderForm(request.POST)
         
         if form.is_valid():
             
@@ -215,7 +280,7 @@ def create_order(request, pk):
             
             order.user = request.user
             order.save()
-            return redirect('home')
+            return redirect('orders')
     return render(request, 'accounts/order_form.html', context)
 
 # Update order information
@@ -227,14 +292,14 @@ def update_order(request, pk):
     context = {'form': form}
     
     if request.method == 'POST':
-        form = OrderForm(request.POST, instance=order,)
+        form = OrderForm(request.POST, instance=order)
         if form.is_valid():
             order = form.save(commit=False)
             
             order.user = request.user
             order.save()
             
-            return redirect('home')
+            return redirect('orders')
     
     return render(request, 'accounts/update_order.html', context)
 
@@ -245,7 +310,7 @@ def delete_order(request,pk):
     order = Order.objects.get(id=pk, user=request.user)
     order.delete()
     
-    return redirect('home')
+    return redirect('orders')
     
     
 # Handling products logic

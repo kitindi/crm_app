@@ -23,6 +23,7 @@ class Product(models.Model):
     product_name = models.CharField(max_length=200,null=True)
     product_category = models.CharField(max_length=200,null=True, choices=CATEGORIES)
     instock = models.PositiveBigIntegerField(null=True)
+    reorder_level = models.PositiveIntegerField(null=True)
     cost = models.DecimalField(max_digits=9,decimal_places=2, null=True)
     price = models.DecimalField(max_digits=9, decimal_places=2,null=True)
     date_created = models.DateTimeField(auto_now_add=True ,null=True)
@@ -49,5 +50,23 @@ class Order(models.Model):
     
     def __str__(self):
         return f"{self.status}"
+  
+    
+
+class Profile(models.Model):
+    GENDER = (('Male','Male'), ('Female','Female'),('Rather not say','Rather not say'))
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    fullname = models.CharField(max_length=300, null=True)
+    gender = models.CharField(max_length=100, choices =GENDER, null = True)
+    phone_number = models.CharField(max_length=100, null=True)
+    city = models.CharField(max_length=100, null=True)
+    country = models.CharField(max_length=100, null=True)
+    bio = models.TextField()
+    profile_image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    
+    
+    def __str__(self):
+        return self.fullname
+    
   
     

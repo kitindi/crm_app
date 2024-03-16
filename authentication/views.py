@@ -10,6 +10,7 @@ from django.contrib import messages
 from .decorators import unauthenticated_user
 
 
+
 # Create your views here.
 @unauthenticated_user
 def signup(request):
@@ -73,8 +74,29 @@ def login(request):
 
 
 
-# logout the user
+# update user profile
+# @login_required
+# def profile(request):
+#     if request.method == 'POST':
+#         p_form = ProfileUpdateForm(request.POST,
+#                                    request.FILES,
+#                                    instance=request.user.profile)
+#         if p_form.is_valid():
+#             p_form.save()
+#             messages.success(request, f'Your account has been updated!')
+#             return redirect('profile') # Redirect back to profile page
 
+#     else:
+#         p_form = ProfileUpdateForm(instance=request.user.profile)
+
+#     context = {
+#         'p_form': p_form
+#     }
+
+#     return render(request, 'auth/profile.html', context)
+
+
+# logout the user
 
 def logout(request):
     auth.logout(request)

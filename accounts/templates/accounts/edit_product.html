@@ -26,7 +26,7 @@
       <div class="w-full sm:p-8">
         <div class="w-full py-4 border-b border-gray-200 mb-5">
             <h1
-          class="text-xl font-bold  text-gray-700 md:text-2xl mb-16"
+          class="text-xl font-bold  text-gray-700 md:text-2xl mb-12"
         >
           Update Product Information
         </h1>
@@ -86,7 +86,23 @@
                 {{ form.price }}
               </div>
          </div>
-         
+         <div class="w-full flex justify-between gap-5 py-3 mb-3">
+          <div class="flex-1">
+              <label
+                for="order-level"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >{{ form.reorder_level.label_tag }}</label
+              >
+              {{ form.reorder_level }}
+            </div> 
+            <div class="flex-1">
+             
+            </div>
+            <div class="flex-1">
+             
+            </div>
+       </div>
+       
                  
           <button
           type="submit"
