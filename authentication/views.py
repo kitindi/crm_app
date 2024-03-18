@@ -59,7 +59,7 @@ def login(request):
 
                 auth.login(request, user)
 
-                return redirect('home')
+                return redirect('all-customers')
         else:
             messages.warning(request, "Username or password is incorrect")
             context = {'form':form}

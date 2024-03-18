@@ -15,24 +15,6 @@ from django.contrib.auth.models import User
 
 
 
-@login_required
-
-def home(request):
-    # get customers statistics and details
-    products = Product.objects.filter(user=request.user)
-    customers = Customer.objects.filter(user=request.user)
-    customersCount = customers.count()
-    
-    # get order statistics and details
-    orders = Order.objects.filter(user=request.user)
-    ordersCount = orders.count()
-    deliveredCount = Order.objects.filter(status = 'Delivered',user=request.user).count()
-    pendingCount = Order.objects.filter(status = 'Pending', user=request.user).count()
-    
-    
-    context = {'products': products, 'customers': customers,'customersCount':customersCount,'deliveredCount': deliveredCount,'orderCount': ordersCount,'pendingCount': pendingCount,'orders': orders}
-    
-    return render(request, 'accounts/dashboard.html',context)
 
 # Products APIs
 
