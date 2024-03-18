@@ -1,4 +1,5 @@
 
+from datetime import timedelta
 import os
 from pathlib import Path
 from dotenv import load_dotenv
@@ -44,6 +45,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # Django auto logout middleware
+    'django_auto_logout.middleware.auto_logout',
 ]
 
 ROOT_URLCONF = "customer_manager.urls"
@@ -59,6 +62,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'django_auto_logout.context_processors.auto_logout_client',
             ],
         },
     },
@@ -113,10 +117,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
-
-MEDIA_URL = "/images/"
 STATICFILES_DIRS=[os.path.join(BASE_DIR, "static")]
-MEDIA_ROOT = os.path.join(BASE_DIR, "static/images")
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = '/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -134,3 +138,11 @@ EMAIL_PORT ='587'
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('USER_EMAIL')
 EMAIL_HOST_PASSWORD = os.getenv('USER_PASS')
+DEFAULT_FROM_EMAIL = os.getenv('USER_EMAIL')
+EMAIL_SUBJECT_PREFIX = "Password Recovery"
+
+
+
+# Django Session Timeout
+
+AUTO_LOGOUT = {'IDLE_TIME': timedelta(minutes=1),'REDIRECT_TO_LOGIN_IMMEDIATELY': True,'MESSAGE': 'The session has expired. Please login again to continue.'}

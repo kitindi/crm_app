@@ -8,6 +8,13 @@ from django.contrib.auth.models import User
 # from authentication.decorators import allowed_user
 # Create your views here.
 
+
+# Set up user profile
+
+# update user profile
+
+
+
 @login_required
 
 def home(request):
@@ -19,8 +26,8 @@ def home(request):
     # get order statistics and details
     orders = Order.objects.filter(user=request.user)
     ordersCount = orders.count()
-    deliveredCount = Order.objects.filter(status = 'Delivered').count()
-    pendingCount = Order.objects.filter(status = 'Pending').count()
+    deliveredCount = Order.objects.filter(status = 'Delivered',user=request.user).count()
+    pendingCount = Order.objects.filter(status = 'Pending', user=request.user).count()
     
     
     context = {'products': products, 'customers': customers,'customersCount':customersCount,'deliveredCount': deliveredCount,'orderCount': ordersCount,'pendingCount': pendingCount,'orders': orders}

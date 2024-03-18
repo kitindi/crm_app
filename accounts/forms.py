@@ -59,10 +59,5 @@ class OrderForm(forms.ModelForm):
        
 
 
-# Create a ProfileUpdateForm to update image.
-class ProfileUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ['fullname','gender','phone_number','city','country','bio','profile_image']
 
 

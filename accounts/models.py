@@ -53,20 +53,6 @@ class Order(models.Model):
   
     
 
-class Profile(models.Model):
-    GENDER = (('Male','Male'), ('Female','Female'),('Rather not say','Rather not say'))
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    fullname = models.CharField(max_length=300, null=True)
-    gender = models.CharField(max_length=100, choices =GENDER, null = True)
-    phone_number = models.CharField(max_length=100, null=True)
-    city = models.CharField(max_length=100, null=True)
-    country = models.CharField(max_length=100, null=True)
-    bio = models.TextField()
-    profile_image = models.ImageField(default='default.jpg', upload_to='profile_pics')
-    
-    
-    def __str__(self):
-        return self.fullname
-    
+
   
     
