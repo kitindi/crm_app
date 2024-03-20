@@ -5,6 +5,7 @@ from .forms import *
 from .filters import ProductFilter
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 # from authentication.decorators import allowed_user
 # Create your views here.
 
@@ -45,6 +46,10 @@ def products(request):
     # user_products = request.user.product
     products = Product.objects.filter(user=request.user)
     orders = Order.objects.filter(user=request.user)
+    # pagination
+    paginator = Paginator(products, 5)
+    page_number = request.GET.get('page')
+    page_obj = Paginator.get_page(paginator,page_number)
     
     # calculate total number of products available in stock
     
@@ -73,7 +78,7 @@ def products(request):
     
             
        
-    context = {'products': products, 'totalStock': totalStock, 'reorderCount': reorderCount,'ordersToshipCount': ordersToshipCount,'ordersDelivered': ordersDelivered}
+    context = {'products': products, 'totalStock': totalStock, 'reorderCount': reorderCount,'ordersToshipCount': ordersToshipCount,'ordersDelivered': ordersDelivered,'page_obj':page_obj}
     return render(request, 'accounts/products.html', context)
 
 # view product details
@@ -138,6 +143,8 @@ def customer(request, pk):
     # get a customer details
     customer = Customer.objects.get(id=pk,user=request.user)
     
+   
+    
     # get all customer orders
     orders = customer.order_set.all()
     deliveredCount = customer.order_set.filter(status = 'Delivered').count()
@@ -163,7 +170,10 @@ def all_customers(request):
     deliveredOrders= Order.objects.filter(status = 'Delivered', user=request.user)
     deliveredCount= deliveredOrders.count()
     pendingOrders= Order.objects.filter(status = 'Pending', user=request.user).count()
-  
+    # implementing pagination
+    paginator = Paginator(customers, 5)
+    page_number = request.GET.get('page')
+    page_obj = Paginator.get_page(paginator,page_number)
     # total custumers served
     customerCount = customers.count()
     # Ccalculate the total sales for all customers
@@ -175,7 +185,7 @@ def all_customers(request):
     
     
     # 
-    context = {'customers': customers, 'customersCount': customerCount,'deliveredCount': deliveredCount,'pendingOrders': pendingOrders,'totalSales': totalSales}
+    context = { 'customersCount': customerCount,'deliveredCount': deliveredCount,'pendingOrders': pendingOrders,'totalSales': totalSales,'page_obj':page_obj}
     return render(request, 'accounts/customers.html', context)   
 
 
