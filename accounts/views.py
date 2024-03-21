@@ -243,6 +243,11 @@ def delete_customer(request,pk):
 @login_required
 def orders(request):
     orders = Order.objects.filter(user=request.user)
+    # adding paginations for orders table
+    
+    paginator = Paginator(orders, 5)
+    page_number = request.GET.get('page')
+    page_obj = Paginator.get_page(paginator,page_number)
     ordersDelivered = 0
     ordersPending = 0
     
@@ -260,7 +265,7 @@ def orders(request):
    
             
     
-    context = {'orders': orders, 'ordersDelivered':ordersDelivered, 'ordersPending': ordersPending}
+    context = {'orders': orders, 'ordersDelivered':ordersDelivered, 'ordersPending': ordersPending,'page_obj': page_obj}
     
     return render(request, 'accounts/all_orders.html', context)
 
