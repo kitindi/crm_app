@@ -60,11 +60,12 @@ def products(request):
     
     
     for product in products:
-        totalStock += product.instock
+
         
         if product.instock <= product.reorder_level:
             reorderCount += 1
     
+    print(totalStock)
     for order in orders:
         
         if order.status == 'Delivered':
@@ -203,6 +204,7 @@ def add_customer(request):
             customer.save()
             
             return redirect('all-customers')
+        
     
     return render(request, 'accounts/customer_form.html', context)
 
