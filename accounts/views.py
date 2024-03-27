@@ -6,6 +6,7 @@ from .filters import ProductFilter
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
+from django.db.models import Sum
 # from authentication.decorators import allowed_user
 # Create your views here.
 
@@ -53,23 +54,19 @@ def products(request):
     
     # calculate total number of products available in stock
     
-    totalStock = 0
+    total_quantity = Product.objects.filter(user=request.user).aggregate(total_quantity=Sum('instock'))['total_quantity']
     reorderCount = 0
     ordersToshipCount = 0
     ordersDelivered = 0
     
-    
     for product in products:
-
-        
         if product.instock <= product.reorder_level:
             reorderCount += 1
-    
-    print(totalStock)
     for order in orders:
         
         if order.status == 'Delivered':
             ordersDelivered += 1
+       
             
     for order in orders:
         
@@ -79,7 +76,7 @@ def products(request):
     
             
        
-    context = {'products': products, 'totalStock': totalStock, 'reorderCount': reorderCount,'ordersToshipCount': ordersToshipCount,'ordersDelivered': ordersDelivered,'page_obj':page_obj}
+    context = {'products': products, 'totalStock': total_quantity, 'reorderCount': reorderCount,'ordersToshipCount': ordersToshipCount,'ordersDelivered': ordersDelivered,'page_obj':page_obj}
     return render(request, 'accounts/products.html', context)
 
 # view product details
